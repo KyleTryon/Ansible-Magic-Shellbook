@@ -1,2 +1,12 @@
 ---
-# tasks file for asciinema
+- name: Add asciinema repository
+  apt_repository:
+    repo: ppa:zanchey/asciinema
+    state: latest
+
+- name: Install asciinema
+  apt:
+    name: asciinema
+    state: latest
+  become: true
+  become_user: root
