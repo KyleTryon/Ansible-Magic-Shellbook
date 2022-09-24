@@ -21,6 +21,7 @@
     - neofetch
     - net-tools
     - pkg-config
+    - rsync
     - software-properties-common
     - tmux
     - tzdata
