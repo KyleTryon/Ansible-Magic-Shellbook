@@ -1,0 +1,32 @@
+---
+- name: Update and upgrade packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install core packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - build-essential
+    - ca-certificates
+    - cmake
+    - curl
+    - git
+    - gnupg
+    - libcurl4-openssl-dev
+    - make
+    - net-tools
+    - pkg-config
+    - software-properties-common
+    - tzdata
+    - unzip
+    - vim
+    - wget
+    - zip
+    
+- name: Update timezone
+  timezone:
+    name: "{{ timezone }}"
