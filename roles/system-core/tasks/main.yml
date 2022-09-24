@@ -22,6 +22,7 @@
     - net-tools
     - pkg-config
     - software-properties-common
+    - tmux
     - tzdata
     - unzip
     - vim
