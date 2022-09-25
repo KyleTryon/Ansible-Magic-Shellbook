@@ -1,8 +1,8 @@
 ---
 - name: Clone dotfiles
   git:
-    repo: {{dotfile_repo}}
-    dest: {{dotfile_dir}}
+    repo: "{{dotfile_repo}}"
+    dest: "{{dotfile_dir}}"
 
 - name: Check if dotfiles install script exists
   stat:

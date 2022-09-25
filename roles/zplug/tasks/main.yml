@@ -3,4 +3,4 @@
 - name: Clone zplug
   git:
     repo: https://github.com/zplug/zplug
-    dest: {{zplug_dir}}
+    dest: "{{zplug_dir}}"

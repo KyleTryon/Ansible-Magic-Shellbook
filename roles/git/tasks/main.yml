@@ -1,24 +1,22 @@
 ---
-
 # Configuring git should be done after cloning dotfiles.
-
 - name: Install git
   become: true
-  state: latest
   apt:
     name: git
+    state: latest
 
 - name: Configure git email
-  file: {{git_config_file}}
   git_config:
     name: user.email
+    file: "{{git_config_file}}"
     scope: global
-    value: {{git_user_email}}
+    value: "{{git_user_email}}"
 
 - name: Configure git user
-  file: {{git_config_file}}
   git_config:
     name: user.name
+    file: "{{git_config_file}}"
     scope: global
-    value: {{git_user_name}}
+    value: "{{git_user_name}}"
 

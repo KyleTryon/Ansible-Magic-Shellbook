@@ -1,4 +1,4 @@
 ---
 collections:
 - name: community.general
-- name: community.crypto.openssh_keypair
+- name: community.crypto
