@@ -1,11 +1,21 @@
 version: 2.1
 
+executors:
+  default:
+    docker:
+      - image: cimg/python:3.10.7
+
 jobs:
   run-playbook:
-    docker:
-      - image: cimg/python:3.9
+    executor: default
     steps:
       - checkout
+      - run:
+          name: Install ansible-lint
+          command: pip install ansible-lint
+      - run:
+          name: Lint playbook
+          command: ansible-lint ./playbooks/linux-dev.yml
       - run:
           name: Run Ansible
           command: |
