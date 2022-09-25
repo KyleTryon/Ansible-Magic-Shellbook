@@ -10,7 +10,7 @@ sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible
 
 # To keep the repo clean, I load my defaults from a separate untracked file.
-if [ -f ./defaults/.main.yml ] > ; then
+if [ -f ./defaults/.main.yml ]; then
   echo "Overwriting variables with secret defaults..."
   mv ./defaults/.main.yml ./defaults/main.yml
 fi
