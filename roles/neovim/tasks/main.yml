@@ -1,2 +1,10 @@
 ---
-# tasks file for neovim
+- name: Get latest Neovim tag
+  shell:
+    curl -Ls -o /dev/null -w %{url_effective} https://github.com/neovim/neovim/releases/latest | grep -Eo '[0-9]+\.[0-9]+\.[0-9]'
+  register: nvim_latest_tag
+
+- name: Install Neovim from deb
+  apt:
+    deb: https://github.com/neovim/neovim/releases/download/v{{nvim_latest_tag}}/nvim-linux64.deb
+  become: true

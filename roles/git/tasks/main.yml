@@ -1,2 +1,24 @@
 ---
-# tasks file for git
+
+# Configuring git should be done after cloning dotfiles.
+
+- name: Install git
+  become: true
+  state: latest
+  apt:
+    name: git
+
+- name: Configure git email
+  file: {{git_config_file}}
+  git_config:
+    name: user.email
+    scope: global
+    value: {{git_user_email}}
+
+- name: Configure git user
+  file: {{git_config_file}}
+  git_config:
+    name: user.name
+    scope: global
+    value: {{git_user_name}}
+

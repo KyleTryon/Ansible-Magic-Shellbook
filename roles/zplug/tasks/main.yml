@@ -1,2 +1,6 @@
 ---
-# tasks file for zplug
+# Configure zplug with dotfiles
+- name: Clone zplug
+  git:
+    repo: https://github.com/zplug/zplug
+    dest: {{zplug_dir}}

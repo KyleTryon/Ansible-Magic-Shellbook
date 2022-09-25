@@ -1,6 +1,6 @@
 galaxy_info:
   author: Kyle Tryon (TechSquidTV)
-  description: your role description
+  description: Install Zplug and configure plugins for Oh-my-zsh
   company: TechSquidTV
 
   # If the issue tracker for your role is not on github, uncomment the

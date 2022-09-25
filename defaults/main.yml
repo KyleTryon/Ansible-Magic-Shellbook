@@ -1,0 +1,23 @@
+# System defaults
+user: root
+
+#  Settings for git configuration.
+git_user_email: johndoe@example.com
+git_user_name: John Doe
+
+#  Settings for dotfiles.
+dotfile_repo: git@github.com:<user>/<repo>.git
+dotfile_dir: /home/{{user}}/.dotfiles/
+dotfile_install: install.sh
+
+# Language defaults
+go_version: 1.19.1
+## NVM and Node
+node_versions:
+  - lts/*
+  - node
+node_default_version: node
+nvm_default_packages_file: /home/{{user}}/.nvm/.default-packages
+
+#  Settings for zplug.
+zplug_dir: "/home/{{user}}/.zplug"

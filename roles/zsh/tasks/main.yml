@@ -1,2 +1,9 @@
 ---
-# tasks file for zsh
+- name: Install ZSH
+  apt:
+    name: zsh
+    state: latest
+  become: true
+
+- name: Make ZSH the default shell
+  shell: chsh -s $(which zsh)

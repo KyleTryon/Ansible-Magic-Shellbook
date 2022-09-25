@@ -1,2 +1,7 @@
 ---
 # vars file for nvm
+node_versions:
+  - lts/*
+  - node
+node_default_version: node
+nvm_default_packages_file: /home/{{user}}/.nvm/.default-packages

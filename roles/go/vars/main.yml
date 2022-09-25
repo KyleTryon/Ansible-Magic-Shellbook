@@ -1,2 +1,2 @@
 ---
-# vars file for go
+go_version: 1.19.1

@@ -9,4 +9,3 @@
     name: asciinema
     state: latest
   become: true
-  become_user: root

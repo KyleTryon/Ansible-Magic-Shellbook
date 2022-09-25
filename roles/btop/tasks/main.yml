@@ -1,0 +1,16 @@
+---
+- name: Download btop
+  get_url:
+    url: https://github.com/aristocratos/btop/releases/download/v{{btop_version}}/btop-{{btop_arch}}-{{btop_os}}-musl.tbz
+    dest: /tmp/btop.tbz
+
+- name: Extract btop
+  unarchive:
+    src: /tmp/btop.tbz
+    dest: /tmp/btop
+    remote_src: yes
+
+- name: Install btop
+  shell:
+    chdir: /tmp/btop
+    command: make install

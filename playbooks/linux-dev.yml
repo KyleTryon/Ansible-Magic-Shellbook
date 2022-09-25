@@ -1,0 +1,22 @@
+---
+- name: Setup Linux Dev Server
+  hosts: localhost
+  connection: local
+  var-files:
+    - defaults/main.yml
+  roles:
+    - system-core
+    - dotfiles
+    - zsh
+    - oh-my-zsh
+    - zplug
+    - git
+    - gh
+    - yq
+    - bat
+    - neovim
+    - bats
+    - asciinema
+    - btop
+    - go
+    - nvm

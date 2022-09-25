@@ -4,10 +4,10 @@
     update_cache: yes
     upgrade: yes
 
-- name: Install core packages
+- name: Install core packages Linux
   apt:
     name: "{{ item }}"
-    state: present
+    state: latest
   with_items:
     - apt-transport-https
     - build-essential
@@ -16,20 +16,57 @@
     - curl
     - git
     - gnupg
+    - gzip
+    - iotop
+    - jq
     - libcurl4-openssl-dev
     - make
+    - ncdu
     - neofetch
     - net-tools
     - pkg-config
+    - python3
     - rsync
+    - shellcheck
     - software-properties-common
+    - tar
     - tmux
     - tzdata
     - unzip
     - vim
     - wget
     - zip
+    - yamllint
     
 - name: Update timezone
   timezone:
     name: "{{ timezone }}"
+
+- name: Configure default user
+  user:
+    name: "{{ user }}"
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+  become: true
+
+- name: Add default user directories
+  file:
+    path: "/home/{{ user }}/{{ item }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  with_items:
+    - documents
+    - projects
+    - server
+
+- name: Configure default ed25519 SSH key pair
+  community.crypto.openssh_keypair:
+    path: "/home/{{ user }}/.ssh/id_ed25519"
+    type: ed25519
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0600
+    comment: "{{git_user_email}}"

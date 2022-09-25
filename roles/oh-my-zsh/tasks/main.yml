@@ -1,2 +1,8 @@
 ---
-# tasks file for oh-my-zsh
+
+# Load in your .zshrc file via dotfiles
+
+- name: Install Oh-my-zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: /home/{{user}}/.oh-my-zsh

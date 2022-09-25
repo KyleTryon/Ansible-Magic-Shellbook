@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  run-playbook:
+    docker:
+      - image: cimg/python:3.9
+    steps:
+      - checkout
+      - run:
+          name: Run Ansible
+          command: ./install.sh
+workflows:
+  ansible:
+    jobs:
+      - run-playbook

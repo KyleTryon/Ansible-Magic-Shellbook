@@ -1,2 +1,11 @@
 ---
-# tasks file for yq
+- name: Get latest YQ tag
+  shell:
+    curl -Ls -o /dev/null -w %{url_effective} https://github.com/mikefarah/yq/releases/latest | grep -Eo '[0-9]+\.[0-9]+\.[0-9]'
+  register: yq_latest_tag
+
+- name: Download YQ
+  get_url:
+    url: https://github.com/mikefarah/yq/releases/download/v{{yq_latest_tag}}/yq_linux_amd64
+    dest: /usr/local/bin/yq
+    mode: 0755
