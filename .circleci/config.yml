@@ -8,7 +8,8 @@ jobs:
       - checkout
       - run:
           name: Run Ansible
-          command: sudo ./install.sh
+          command: |
+            chmod +x install.sh && ./install.sh
 workflows:
   ansible:
     jobs:
