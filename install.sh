@@ -11,6 +11,7 @@ sudo apt install ansible
 
 # To keep the repo clean, I load my defaults from a separate untracked file.
 if ./defaults/.main.yml; then
+  echo "Overwriting variables with secret defaults..."
   mv ./defaults/.main.yml ./defaults/main.yml
 fi
 
@@ -18,4 +19,4 @@ echo "Install Ansible Galaxy requirements"
 ansible-galaxy install -r requirements.yml
 
 echo "Running playbook"
-ansible-playbook ./playbooks/linux-dev.yml
+ansible-playbook ./playbooks/linux-dev.yml --extra-vars "@./defaults/main.yml"
