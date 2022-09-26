@@ -46,7 +46,7 @@
 - name: Configure default user
   ansible.builtin.user:
     name: "{{ user }}"
-    ansible.builtin.shell: /bin/bash
+    shell: /bin/bash
     groups: sudo
     append: true
   become: true
