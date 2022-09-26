@@ -8,7 +8,7 @@ git_user_name: John Doe
 git_config_file: /home/{{ user }}/.gitconfig
 
 #  Settings for dotfiles.
-dotfile_repo: git@github.com:<user>/<repo>.git
+dotfile_repo: git@github.com:KyleTryon/.dotfiles.git
 dotfile_dir: /home/{{ user }}/.dotfiles/
 dotfile_install: install.sh
 
