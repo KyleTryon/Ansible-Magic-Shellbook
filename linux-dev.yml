@@ -4,7 +4,6 @@
   connection: local
   roles:
     - system_core
-    - dotfiles
     - zsh
     - oh_my_zsh
     - zplug
@@ -18,3 +17,4 @@
     - btop
     - go
     - nvm
+    - dotfiles
