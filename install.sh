@@ -20,6 +20,13 @@ if [ -f ./defaults/.main.json ]; then
   mv ./defaults/.main.json ./defaults/main.yml
 fi
 
+# Ensure the default variables are set.
+if grep -q "John Doe" defaults/main.yml; then
+    echo "Please update the defaults/main.yml file with your own information."
+    echo "You may also provide a .main.yml file in the defaults directory."
+    exit 1
+fi
+
 
 echo "Install Ansible Galaxy requirements"
 ansible-galaxy install -r requirements.yml
