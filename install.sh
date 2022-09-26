@@ -12,12 +12,12 @@ sudo apt install ansible -y
 # To keep the repo clean, I load my defaults from a separate untracked file.
 if [ -f ./defaults/.main.yml ]; then
   echo "Overwriting variables with secret defaults..."
-  mv ./defaults/.main.yml ./defaults/main.yml
+  sudo cp -f ./defaults/.main.yml ./defaults/main.yml
 fi
 ## In CI, I load from a JSON file loaded in the environment.
 if [ -f ./defaults/.main.json ]; then
   echo "Overwriting variables with secret defaults..."
-  mv ./defaults/.main.json ./defaults/main.yml
+  sudo cp -f ./defaults/.main.json ./defaults/main.yml
 fi
 
 # Ensure the default variables are set.
