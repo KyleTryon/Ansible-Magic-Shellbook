@@ -1,7 +1,7 @@
 ---
 - name: Install bats-core from source
   ansible.builtin.git:
-    repo: git@github.com:bats-core/bats-core.git
+    repo: https://github.com/bats-core/bats-core.git
     dest: /tmp/bats-core
     version: master
 
