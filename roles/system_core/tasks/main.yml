@@ -74,12 +74,13 @@
     comment: "{{ git_user_email }}"
 
 - name: Ensure github.com is a known host
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /{{ user }}/.ssh/known_hosts
-    create: yes
+    create: true
     state: present
     line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
     regexp: "^github\\.com"
+    mode: 0600
 
 - name: Echo complete
   ansible.builtin.debug:
