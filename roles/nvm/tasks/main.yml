@@ -12,7 +12,7 @@
   block:
     - name: Download NVM
       ansible.builtin.git:
-        repo: git@github.com:nvm-sh/nvm.git
+        repo: https://github.com/nvm-sh/nvm.git
         dest: /home/{{ user }}/.nvm
     - name: Set tag to latest
       changed_when: false
