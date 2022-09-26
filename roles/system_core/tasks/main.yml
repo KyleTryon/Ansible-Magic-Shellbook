@@ -62,6 +62,7 @@
     - documents
     - projects
     - server
+    - .ssh
 
 - name: Configure default ed25519 SSH key pair
   community.crypto.openssh_keypair:
