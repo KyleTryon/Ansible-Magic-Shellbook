@@ -72,3 +72,15 @@
     group: "{{ user }}"
     mode: 0600
     comment: "{{ git_user_email }}"
+
+- name: Ensure github.com is a known host
+  lineinfile:
+    dest: /{{ user }}/.ssh/known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+    regexp: "^github\\.com"
+
+- name: Echo complete
+  ansible.builtin.debug:
+    msg: "User {{ user }} created with SSH key pair and default directories."
