@@ -5,7 +5,7 @@
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: /home/{{ user }}/.oh-my-zsh
-  become_user: "{{ user }}"
+  become: true
 
 - name: Ensure permissions and ownership
   ansible.builtin.file:
