@@ -16,8 +16,8 @@
     dest: /tmp/btop
     remote_src: true
 
-- name: Install btop
-  changed_when: false
-  ansible.builtin.shell:
+- name: Install btop with make
+  community.general.make:
     chdir: /tmp/btop
-    command: make install
+    target: install
+  become: true
