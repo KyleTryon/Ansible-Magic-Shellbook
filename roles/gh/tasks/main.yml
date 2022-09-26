@@ -1,6 +1,5 @@
 ---
 - name: Install gh
   become: true
-  apt:
-    name: gh
-    deb: https://github.com/cli/cli/releases/download/v{{gh_version}}/gh_{{gh_version}}_linux_{{gh_arch}}.deb
+  ansible.builtin.apt:
+    deb: https://github.com/cli/cli/releases/download/v{{ gh_version }}/gh_{{ gh_version }}_linux_{{ gh_arch }}.deb

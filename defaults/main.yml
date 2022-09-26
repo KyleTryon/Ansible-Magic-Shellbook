@@ -1,13 +1,15 @@
+---
 # System defaults
 user: root
 
 #  Settings for git configuration.
 git_user_email: johndoe@example.com
 git_user_name: John Doe
+git_config_file: /home/{{ user }}/.gitconfig
 
 #  Settings for dotfiles.
-dotfile_repo: git@github.com:<user>/<repo>.git
-dotfile_dir: /home/{{user}}/.dotfiles/
+dotfile_repo: https://github.com/KyleTryon/.dotfiles.git
+dotfile_dir: /home/{{ user }}/.dotfiles/
 dotfile_install: install.sh
 
 # Language defaults
@@ -17,7 +19,7 @@ node_versions:
   - lts/*
   - node
 node_default_version: node
-nvm_default_packages_file: /home/{{user}}/.nvm/.default-packages
+nvm_default_packages_file: /home/{{ user }}/.nvm/.default-packages
 
 #  Settings for zplug.
-zplug_dir: "/home/{{user}}/.zplug"
+zplug_dir: "/home/{{ user }}/.zplug"

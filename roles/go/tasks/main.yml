@@ -1,28 +1,36 @@
 ---
 
+- name: Check if Go is installed
+  ansible.builtin.stat:
+    path: /usr/local/go/bin/go
+  register: go_installed
+
 - name: Get local Go version
-  shell: go version | grep -Eo '[0-9]+\.[0-9]+\.[0-9]'
-  register: go_version
+  when: go_installed.stat.exists
+  changed_when: false
+  ansible.builtin.shell: /usr/local/go/bin/go version 2> /dev/null | grep -Eo '[0-9]+\.[0-9]+\.[0-9]'
+  ignore_errors: true
+  register: local_go_version
 
 - name: Install and update Go
-  when: go_version.stdout != {{ go_version }}
+  when: not go_installed.stat.exists or local_go_version.stdout != go_version
   block:
     # Remove old Go version
     - name: Remove previous version of go
       become: true
-      file:
+      ansible.builtin.file:
         path: /usr/local/go
         state: absent
     # Download and install new Go version
     - name: Download Go
       become: true
-      get_url:
+      ansible.builtin.get_url:
         url: https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz
         dest: /tmp/go.linux-amd64.tar.gz
+        mode: 0755
     - name: Extract Go
       become: true
-      unarchive:
+      ansible.builtin.unarchive:
         src: /tmp/go.linux-amd64.tar.gz
         dest: /usr/local
-        remote_src: yes
-
+        remote_src: true

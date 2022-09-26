@@ -2,10 +2,8 @@
 - name: Setup Linux Dev Server
   hosts: localhost
   connection: local
-  var-files:
-    - defaults/main.yml
   roles:
-    - system-core
+    - system_core
     - dotfiles
     - zsh
     - oh-my-zsh

@@ -1,15 +1,33 @@
 version: 2.1
 
+orbs:
+  shellcheck: circleci/shellcheck@3.1.1
+
+executors:
+  default:
+    docker:
+      - image: cimg/python:3.10.7
+
 jobs:
   run-playbook:
-    docker:
-      - image: cimg/python:3.9
+    executor: default
     steps:
       - checkout
       - run:
+          name: Install ansible-lint
+          command: pip install ansible-lint
+      - run:
+          name: Lint playbook
+          command: ansible-lint ./linux-dev.yml
+      - run:
+          name: Import default vaulues
+          command: echo $DEFAULT_VALS | base64 --decode > ./defaults/.main.json
+      - run:
           name: Run Ansible
-          command: ./install.sh
+          command: |
+            chmod +x install.sh && sudo ./install.sh
 workflows:
   ansible:
     jobs:
       - run-playbook
+      - shellcheck/check

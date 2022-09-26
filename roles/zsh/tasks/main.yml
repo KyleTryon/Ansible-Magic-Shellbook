@@ -1,9 +1,10 @@
 ---
 - name: Install ZSH
-  apt:
+  ansible.builtin.apt:
     name: zsh
-    state: latest
+    state: present
   become: true
 
 - name: Make ZSH the default shell
-  shell: chsh -s $(which zsh)
+  changed_when: false
+  ansible.builtin.shell: chsh -s $(which zsh)

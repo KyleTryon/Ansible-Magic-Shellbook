@@ -1,4 +1,4 @@
 ---
-git_config_file: /home/{{user}}/.gitconfig
+git_config_file: /home/{{ user }}/.gitconfig
 git_user_email: johndoe@example.com
 git_user_name: John Doe
