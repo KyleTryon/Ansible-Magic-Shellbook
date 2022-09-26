@@ -12,5 +12,5 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0755
-    recurse: yes
+    recurse: true
   become: true
