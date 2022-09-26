@@ -1,5 +1,6 @@
 ---
 - name: Clone dotfiles
+  sudo: no
   ansible.builtin.git:
     repo: "{{ dotfile_repo }}"
     dest: "{{ dotfile_dir }}"

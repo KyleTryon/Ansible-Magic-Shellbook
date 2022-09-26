@@ -20,6 +20,9 @@ jobs:
           name: Lint playbook
           command: ansible-lint ./linux-dev.yml
       - run:
+          name: Import default vaulues
+          command: echo $DEFAULT_VALS | base64 --decode > ./defaults/.main.json
+      - run:
           name: Run Ansible
           command: |
             chmod +x install.sh && sudo ./install.sh

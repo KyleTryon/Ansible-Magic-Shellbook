@@ -14,6 +14,12 @@ if [ -f ./defaults/.main.yml ]; then
   echo "Overwriting variables with secret defaults..."
   mv ./defaults/.main.yml ./defaults/main.yml
 fi
+## In CI, I load from a JSON file loaded in the environment.
+if [ -f ./defaults/.main.json ]; then
+  echo "Overwriting variables with secret defaults..."
+  mv ./defaults/.main.json ./defaults/main.yml
+fi
+
 
 echo "Install Ansible Galaxy requirements"
 ansible-galaxy install -r requirements.yml
