@@ -23,7 +23,7 @@
 - name: Install NodeJS
   loop: "{{ node_versions }}"
   changed_when: false
-  ansible.builtin.shell: source /home/{{ user }}/.nvm/nvm.sh && nvm install {{ item }}
+  ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm install {{ item }}
   args:
     chdir: /home/{{ user }}/.nvm
 
