@@ -7,6 +7,6 @@
 - name: Download YQ
   changed_when: false
   ansible.builtin.get_url:
-    url: https://github.com/mikefarah/yq/releases/download/v{{ yq_latest_tag }}/yq_linux_amd64
+    url: https://github.com/mikefarah/yq/releases/download/v{{ yq_latest_tag.stdout }}/yq_linux_amd64
     dest: /usr/local/bin/yq
     mode: 0755
