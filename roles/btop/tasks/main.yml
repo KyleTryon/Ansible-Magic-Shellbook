@@ -5,6 +5,11 @@
     dest: /tmp/btop.tbz
     mode: 0755
 
+- name: Create tmp directory
+  ansible.builtin.file:
+    path: /tmp/btop
+    state: directory
+
 - name: Extract btop
   ansible.builtin.unarchive:
     src: /tmp/btop.tbz
