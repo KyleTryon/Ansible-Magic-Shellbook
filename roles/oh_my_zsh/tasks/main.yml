@@ -1,0 +1,17 @@
+---
+# Load in your .zshrc file via dotfiles
+
+- name: Install Oh-my-zsh
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: /home/{{ user }}/.oh-my-zsh
+  become: true
+
+- name: Ensure permissions and ownership
+  ansible.builtin.file:
+    path: /home/{{ user }}/.oh-my-zsh
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    recurse: true
+  become: true

@@ -1,7 +1,0 @@
----
-# Load in your .zshrc file via dotfiles
-
-- name: Install Oh-my-zsh
-  ansible.builtin.git:
-    repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: /home/{{ user }}/.oh-my-zsh

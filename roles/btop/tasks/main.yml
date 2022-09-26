@@ -9,6 +9,7 @@
   ansible.builtin.file:
     path: /tmp/btop
     state: directory
+    mode: 0755
 
 - name: Extract btop
   ansible.builtin.unarchive:

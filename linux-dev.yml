@@ -4,9 +4,8 @@
   connection: local
   roles:
     - system_core
-    - dotfiles
     - zsh
-    - oh-my-zsh
+    - oh_my_zsh
     - zplug
     - git
     - gh
@@ -18,3 +17,4 @@
     - btop
     - go
     - nvm
+    - dotfiles
