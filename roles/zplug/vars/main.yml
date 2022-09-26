@@ -1,2 +1,2 @@
 ---
-zplug_dir: "/home/{{user}}/.zplug"
+zplug_dir: "/home/{{ user }}/.zplug"

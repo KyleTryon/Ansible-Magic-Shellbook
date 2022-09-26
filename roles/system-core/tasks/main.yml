@@ -1,13 +1,13 @@
 ---
 - name: Update and upgrade packages
-  apt:
-    update_cache: yes
-    upgrade: yes
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: true
 
 - name: Install core packages Linux
-  apt:
+  ansible.builtin.apt:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - apt-transport-https
     - build-essential
@@ -37,21 +37,21 @@
     - wget
     - zip
     - yamllint
-    
+
 - name: Update timezone
   timezone:
     name: "{{ timezone }}"
 
 - name: Configure default user
-  user:
+  ansible.builtin.user:
     name: "{{ user }}"
-    shell: /bin/bash
+    ansible.builtin.shell: /bin/bash
     groups: sudo
-    append: yes
+    append: true
   become: true
 
 - name: Add default user directories
-  file:
+  ansible.builtin.file:
     path: "/home/{{ user }}/{{ item }}"
     state: directory
     owner: "{{ user }}"
@@ -69,4 +69,4 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0600
-    comment: "{{git_user_email}}"
+    comment: "{{ git_user_email }}"

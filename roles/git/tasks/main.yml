@@ -2,21 +2,20 @@
 # Configuring git should be done after cloning dotfiles.
 - name: Install git
   become: true
-  apt:
+  ansible.builtin.apt:
     name: git
-    state: latest
+    state: present
 
 - name: Configure git email
-  git_config:
+  community.general.git_config:
     name: user.email
-    file: "{{git_config_file}}"
+    ansible.builtin.file: "{{ git_config_file }}"
     scope: global
-    value: "{{git_user_email}}"
+    value: "{{ git_user_email }}"
 
 - name: Configure git user
-  git_config:
+  community.general.git_config:
     name: user.name
-    file: "{{git_config_file}}"
+    ansible.builtin.file: "{{ git_config_file }}"
     scope: global
-    value: "{{git_user_name}}"
-
+    value: "{{ git_user_name }}"

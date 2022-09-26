@@ -1,16 +1,18 @@
 ---
 - name: Download btop
-  get_url:
-    url: https://github.com/aristocratos/btop/releases/download/v{{btop_version}}/btop-{{btop_arch}}-{{btop_os}}-musl.tbz
+  ansible.builtin.get_url:
+    url: https://github.com/aristocratos/btop/releases/download/v{{ btop_version }}/btop-{{ btop_arch }}-{{ btop_os }}-musl.tbz
     dest: /tmp/btop.tbz
+    mode: 0755
 
 - name: Extract btop
-  unarchive:
+  ansible.builtin.unarchive:
     src: /tmp/btop.tbz
     dest: /tmp/btop
-    remote_src: yes
+    remote_src: true
 
 - name: Install btop
-  shell:
+  changed_when: false
+  ansible.builtin.shell:
     chdir: /tmp/btop
     command: make install

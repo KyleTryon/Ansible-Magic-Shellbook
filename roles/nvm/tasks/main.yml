@@ -1,50 +1,53 @@
 ---
-
 # This NVM installation assumes you have have already
 #  manually added the NVM load script to your profile
 
 - name: Check if NVM is installed
-  stat:
-    path: /home/{{user}}/.nvm
+  ansible.builtin.stat:
+    path: /home/{{ user }}/.nvm
   register: nvm_installed
 
 - name: Install NVM
   when: not nvm_installed.stat.exists
   block:
     - name: Download NVM
-      git:
+      ansible.builtin.git:
         repo: git@github.com:nvm-sh/nvm.git
-        dest: /home/{{user}}/.nvm
+        dest: /home/{{ user }}/.nvm
     - name: Set tag to latest
-      shell: git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+      changed_when: false
+      ansible.builtin.shell: git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
       args:
-        chdir: /home/{{user}}/.nvm
+        chdir: /home/{{ user }}/.nvm
     - name: Load NVM
-      shell: . /home/{{user}}/.nvm/nvm.sh
+      changed_when: false
+      ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh
 
 - name: Install NodeJS
-  loop: "{{node_versions}}"
-  shell: nvm install {{item}}
+  loop: "{{ node_versions }}"
+  changed_when: false
+  ansible.builtin.shell: nvm install {{ item }}
   args:
-    chdir: /home/{{user}}/.nvm
+    chdir: /home/{{ user }}/.nvm
 
 - name: Set default NodeJS version
-  shell: nvm alias default {{node_default_version}} && nvm use default
+  ansible.builtin.shell: nvm alias default {{ node_default_version }} && nvm use default
+  changed_when: false
   args:
-    chdir: /home/{{user}}/.nvm
+    chdir: /home/{{ user }}/.nvm
 
 - name: Check for default packages file
-  stat:
-    path: "{{nvm_default_packages_file}}"
+  ansible.builtin.stat:
+    path: "{{ nvm_default_packages_file }}"
   register: nvm_default_packages_file_exists
 
 - name: Install default packages
   when: nvm_default_packages_file_exists.stat.exists
   block:
     - name: Copy default packages file
-      file:
-        src: "{{nvm_default_packages_file}}"
-        dest: /home/{{user}}/.nvm/default-packages
-        owner: "{{user}}"
-        group: "{{user}}"
+      ansible.builtin.file:
+        src: "{{ nvm_default_packages_file }}"
+        dest: /home/{{ user }}/.nvm/default-packages
+        owner: "{{ user }}"
+        group: "{{ user }}"
         mode: 0644

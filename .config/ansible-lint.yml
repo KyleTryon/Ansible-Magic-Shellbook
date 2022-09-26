@@ -1,0 +1,5 @@
+skip_list:
+  - risky-shell-pipe
+  - latest[git]
+  - command-instead-of-module
+  - command-instead-of-shell

@@ -1,11 +1,11 @@
 ---
 - name: Add asciinema repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:zanchey/asciinema
-    state: latest
+    state: present
 
 - name: Install asciinema
-  apt:
+  ansible.builtin.apt:
     name: asciinema
-    state: latest
+    state: present
   become: true
