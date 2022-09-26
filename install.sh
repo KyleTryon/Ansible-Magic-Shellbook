@@ -19,4 +19,4 @@ echo "Install Ansible Galaxy requirements"
 ansible-galaxy install -r requirements.yml
 
 echo "Running playbook"
-ansible-playbook ./playbooks/linux-dev.yml --extra-vars "@./defaults/main.yml"
+ansible-playbook ./linux-dev.yml --extra-vars "@./defaults/main.yml"

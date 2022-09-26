@@ -18,7 +18,7 @@ jobs:
           command: pip install ansible-lint
       - run:
           name: Lint playbook
-          command: ansible-lint ./playbooks/linux-dev.yml
+          command: ansible-lint ./linux-dev.yml
       - run:
           name: Run Ansible
           command: |
