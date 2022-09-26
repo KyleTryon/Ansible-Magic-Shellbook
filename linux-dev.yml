@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   roles:
-    - system-core
+    - system_core
     - dotfiles
     - zsh
     - oh-my-zsh
