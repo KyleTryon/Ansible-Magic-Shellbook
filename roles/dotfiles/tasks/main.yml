@@ -10,7 +10,7 @@
   register: dotfile_install_script
 
 - name: Install dotfiles
-  ansible.builtin.shell: "{{ dotfile_dir }}{{ dotfile_install }}"
+  ansible.builtin.shell: "sudo {{ dotfile_dir }}{{ dotfile_install }}"
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
