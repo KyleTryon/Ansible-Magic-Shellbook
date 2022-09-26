@@ -5,6 +5,15 @@
     dest: "{{ dotfile_dir }}"
   become_user: "{{ user }}"
 
+- name: Ensure permissions and ownership
+  ansible.builtin.file:
+    path: "{{ dotfile_dir }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    recurse: true
+  become: true
+
 - name: Check if dotfiles install script exists
   ansible.builtin.stat:
     path: "{{ dotfile_dir }}{{ dotfile_install }}"
@@ -15,9 +24,13 @@
   ansible.builtin.file:
     path: "{{ dotfile_dir }}{{ dotfile_install }}"
     mode: 0755
+    group: "{{ user }}"
+    owner: "{{ user }}"
+
 
 - name: Install dotfiles
   ansible.builtin.shell: ". {{ dotfile_dir }}{{ dotfile_install }}"
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
+  become_user: "{{ user }}"
