@@ -2,12 +2,12 @@
 
 # Install and configure the default playbook on the local machine.
 echo "Updating the local machine..."
-sudo apt update
-sudo apt install software-properties-common
+sudo apt update -y
+sudo apt install software-properties-common -y
 
 # Install Ansible.
 sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible
+sudo apt install ansible -y
 
 # To keep the repo clean, I load my defaults from a separate untracked file.
 if [ -f ./defaults/.main.yml ]; then
