@@ -36,6 +36,7 @@
   args:
     chdir: /home/{{ user }}/.nvm
   become_user: "{{ user }}"
+  become: true
 
 - name: Set default NodeJS version
   ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm alias default {{ node_default_version }} && nvm use default
@@ -43,6 +44,7 @@
   args:
     chdir: /home/{{ user }}/.nvm
   become_user: "{{ user }}"
+  become: true
 
 - name: Check for default packages file
   ansible.builtin.stat:
@@ -60,3 +62,4 @@
         group: "{{ user }}"
         mode: 0755
       become_user: "{{ user }}"
+      become: true

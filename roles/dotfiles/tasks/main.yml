@@ -3,6 +3,7 @@
   ansible.builtin.git:
     repo: "{{ dotfile_repo }}"
     dest: "{{ dotfile_dir }}"
+  become: true
   become_user: "{{ user }}"
 
 - name: Ensure permissions and ownership
@@ -32,6 +33,7 @@
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
+  become: true
   become_user: "{{ user }}"
   register: dotfile_install_output
 
@@ -43,6 +45,7 @@
 - name: Echo home directory contents
   ansible.builtin.shell: "ls -lah /home/{{ user }}"
   become_user: "{{ user }}"
+  become: true
   changed_when: false
   register: home_dir_contents
 
