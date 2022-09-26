@@ -9,13 +9,13 @@
 - name: Configure git email
   community.general.git_config:
     name: user.email
-    ansible.builtin.file: "{{ git_config_file }}"
+    file: "{{ git_config_file }}"
     scope: global
     value: "{{ git_user_email }}"
 
 - name: Configure git user
   community.general.git_config:
     name: user.name
-    ansible.builtin.file: "{{ git_config_file }}"
+    file: "{{ git_config_file }}"
     scope: global
     value: "{{ git_user_name }}"
