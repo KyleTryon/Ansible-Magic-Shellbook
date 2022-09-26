@@ -20,4 +20,3 @@
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
-  become: true
