@@ -1,7 +1,7 @@
 ---
 - name: Get local Go version
   changed_when: false
-  ansible.builtin.shell: go version | grep -Eo '[0-9]+\.[0-9]+\.[0-9]'
+  ansible.builtin.shell: echo $(go version 2> /dev/null) | grep -Eo '[0-9]+\.[0-9]+\.[0-9]'
   register: go_version
 
 - name: Install and update Go
