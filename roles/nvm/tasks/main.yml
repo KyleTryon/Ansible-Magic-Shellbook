@@ -20,18 +20,29 @@
       args:
         chdir: /home/{{ user }}/.nvm
 
+    - name: Ensure permissions and ownership
+      ansible.builtin.file:
+        path: /home/{{ user }}/.nvm
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: 0755
+        recurse: yes
+      become: true
+
 - name: Install NodeJS
   loop: "{{ node_versions }}"
   changed_when: false
   ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm install {{ item }}
   args:
     chdir: /home/{{ user }}/.nvm
+  become_user: "{{ user }}"
 
 - name: Set default NodeJS version
   ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm alias default {{ node_default_version }} && nvm use default
   changed_when: false
   args:
     chdir: /home/{{ user }}/.nvm
+  become_user: "{{ user }}"
 
 - name: Check for default packages file
   ansible.builtin.stat:
@@ -47,4 +58,5 @@
         dest: /home/{{ user }}/.nvm/default-packages
         owner: "{{ user }}"
         group: "{{ user }}"
-        mode: 0644
+        mode: 0755
+      become_user: "{{ user }}"
