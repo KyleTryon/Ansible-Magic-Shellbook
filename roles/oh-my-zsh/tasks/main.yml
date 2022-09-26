@@ -5,3 +5,11 @@
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: /home/{{ user }}/.oh-my-zsh
+
+- name: Ensure permissions and ownership
+  ansible.builtin.file:
+    path: /home/{{ user }}/.oh-my-zsh
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    recurse: yes
