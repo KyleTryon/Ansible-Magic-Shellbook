@@ -17,7 +17,7 @@
     mode: 0755
 
 - name: Install dotfiles
-  ansible.builtin.shell: "./{{ dotfile_dir }}{{ dotfile_install }}"
+  ansible.builtin.shell: ". {{ dotfile_dir }}{{ dotfile_install }}"
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
