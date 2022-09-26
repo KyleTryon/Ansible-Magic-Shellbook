@@ -34,3 +34,18 @@
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
   become_user: "{{ user }}"
+  register: dotfile_install_output
+
+- name: Check dotfiles install output
+  ansible.builtin.debug:
+    msg: "{{ dotfile_install_output.stdout_lines }}"
+  when: dotfile_install_script.stat.exists
+
+- name: Echo home directory contents
+  ansible.builtin.shell: "ls -lah /home/{{ user }}"
+  become_user: "{{ user }}"
+  register: home_dir_contents
+
+- name: Check home directory contents
+  ansible.builtin.debug:
+    msg: "{{ home_dir_contents.stdout_lines }}"
