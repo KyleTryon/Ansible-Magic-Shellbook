@@ -1,5 +1,7 @@
 # Ansible Magic Shellbook
 
+![CircleCI](https://img.shields.io/circleci/build/gh/KyleTryon/Ansible-Magic-Shellbook/main)
+
 My personal collection of Ansible playbooks and roles for setting up my personal development machines.
 
 ## Overview
