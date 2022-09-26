@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Run Ansible
           command: |
-            chmod +x install.sh && ./install.sh
+            chmod +x install.sh && sudo ./install.sh
 workflows:
   ansible:
     jobs:
