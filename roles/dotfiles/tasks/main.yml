@@ -44,6 +44,7 @@
 - name: Echo home directory contents
   ansible.builtin.shell: "ls -lah /home/{{ user }}"
   become_user: "{{ user }}"
+  changed_when: false
   register: home_dir_contents
 
 - name: Check home directory contents
