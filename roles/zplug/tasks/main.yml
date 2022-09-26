@@ -4,3 +4,12 @@
   ansible.builtin.git:
     repo: https://github.com/zplug/zplug
     dest: "{{ zplug_dir }}"
+
+- name: Ensure permissions and ownership
+  ansible.builtin.file:
+    path: "{{ zplug_dir }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+    recurse: yes
+  become: true
