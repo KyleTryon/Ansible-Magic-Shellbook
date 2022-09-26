@@ -19,14 +19,11 @@
       ansible.builtin.shell: git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
       args:
         chdir: /home/{{ user }}/.nvm
-    - name: Load NVM
-      changed_when: false
-      ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh
 
 - name: Install NodeJS
   loop: "{{ node_versions }}"
   changed_when: false
-  ansible.builtin.shell: nvm install {{ item }}
+  ansible.builtin.shell: source /home/{{ user }}/.nvm/nvm.sh && nvm install {{ item }}
   args:
     chdir: /home/{{ user }}/.nvm
 
