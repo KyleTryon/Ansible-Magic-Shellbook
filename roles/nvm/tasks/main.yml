@@ -28,7 +28,7 @@
     chdir: /home/{{ user }}/.nvm
 
 - name: Set default NodeJS version
-  ansible.builtin.shell: nvm alias default {{ node_default_version }} && nvm use default
+  ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm alias default {{ node_default_version }} && nvm use default
   changed_when: false
   args:
     chdir: /home/{{ user }}/.nvm
