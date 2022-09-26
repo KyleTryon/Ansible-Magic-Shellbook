@@ -5,6 +5,7 @@
     upgrade: true
 
 - name: Install core packages Linux
+  become: true
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
