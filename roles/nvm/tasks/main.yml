@@ -15,7 +15,6 @@
         repo: https://github.com/nvm-sh/nvm.git
         dest: /home/{{ user }}/.nvm/
       become: true
-      become_user: "{{ user }}"
 
     - name: Ensure correct permissions
       ansible.builtin.file:

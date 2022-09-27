@@ -30,3 +30,12 @@
     owner: "{{ user }}"
     mode: 0600
   become: true
+
+- name: Add github.com as known_host
+  ansible.builtin.lineinfile:
+    dest: /root/.ssh/known_hosts
+    create: true
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+    regexp: "^github\\.com"
+  become: true
