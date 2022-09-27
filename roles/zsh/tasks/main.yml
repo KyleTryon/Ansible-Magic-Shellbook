@@ -5,8 +5,13 @@
     state: present
   become: true
 
-- name: Make ZSH the default shell
+- name: Get ZSH path
+  ansible.builtin.shell: which zsh
+  register: zsh_path
   changed_when: false
-  ansible.builtin.shell: sudo chsh -s $(which zsh)
-  become_user: "{{ user }}"
+
+- name: Set user shell to ZSH
+  ansible.builtin.user:
+    name: "{{ user }}"
+    shell: "{{ zsh_path.stdout }}"
   become: true
