@@ -4,6 +4,8 @@
   ansible.builtin.git:
     repo: https://github.com/zplug/zplug
     dest: "{{ zplug_dir }}"
+  become_user: "{{ user }}"
+  become: true
 
 - name: Ensure permissions and ownership
   ansible.builtin.file:

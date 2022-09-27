@@ -8,3 +8,5 @@
 - name: Make ZSH the default shell
   changed_when: false
   ansible.builtin.shell: chsh -s $(which zsh)
+  become_user: "{{ user }}"
+  become: true

@@ -16,6 +16,14 @@
         dest: /home/{{ user }}/.nvm/
       become: true
       become_user: "{{ user }}"
+    
+    - name: Ensure correct permissions
+      ansible.builtin.file:
+        path: /home/{{ user }}/.nvm
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        recurse: true
+      become: true
 
     - name: Set tag to latest
       changed_when: false
