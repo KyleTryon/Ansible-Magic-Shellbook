@@ -2,7 +2,7 @@
 # Configure zplug with dotfiles
 - name: Clone zplug
   ansible.builtin.git:
-    repo: https://github.com/zplug/zplug
+    repo: https://github.com/zplug/zplug.git
     dest: "{{ zplug_dir }}"
   become: true
 
