@@ -3,6 +3,7 @@
   ansible.builtin.git:
     repo: "{{ dotfile_repo }}"
     dest: "{{ dotfile_dir }}"
+  become: true
   become_user: "{{ user }}"
 
 - name: Ensure permissions and ownership
@@ -27,10 +28,27 @@
     group: "{{ user }}"
     owner: "{{ user }}"
 
-
 - name: Install dotfiles
-  ansible.builtin.shell: "$0 {{ dotfile_dir }}{{ dotfile_install }}"
+  ansible.builtin.shell: "bash {{ dotfile_dir }}{{ dotfile_install }}"
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
+  become: true
   become_user: "{{ user }}"
+  register: dotfile_install_output
+
+- name: Check dotfiles install output
+  ansible.builtin.debug:
+    msg: "{{ dotfile_install_output.stdout_lines }}"
+  when: dotfile_install_script.stat.exists
+
+- name: Echo home directory contents
+  ansible.builtin.shell: "ls -lah /home/{{ user }}"
+  become_user: "{{ user }}"
+  become: true
+  changed_when: false
+  register: home_dir_contents
+
+- name: Check home directory contents
+  ansible.builtin.debug:
+    msg: "{{ home_dir_contents.stdout_lines }}"

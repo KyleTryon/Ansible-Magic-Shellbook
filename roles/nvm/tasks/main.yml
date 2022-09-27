@@ -13,10 +13,23 @@
     - name: Download NVM
       ansible.builtin.git:
         repo: https://github.com/nvm-sh/nvm.git
-        dest: /home/{{ user }}/.nvm
+        dest: /home/{{ user }}/.nvm/
+      become: true
+      become_user: "{{ user }}"
+
+    - name: Ensure correct permissions
+      ansible.builtin.file:
+        path: /home/{{ user }}/.nvm
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        recurse: true
+      become: true
+
     - name: Set tag to latest
       changed_when: false
-      ansible.builtin.shell: git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+      ansible.builtin.shell:
+        git config --global --add safe.directory /home/{{ user }}/.nvm && \
+        git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
       args:
         chdir: /home/{{ user }}/.nvm
 
@@ -32,17 +45,19 @@
 - name: Install NodeJS
   loop: "{{ node_versions }}"
   changed_when: false
-  ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm install {{ item }}
+  ansible.builtin.shell: source /home/{{ user }}/.nvm/nvm.sh && nvm install {{ item }}
   args:
     chdir: /home/{{ user }}/.nvm
-  become_user: "{{ user }}"
+    executable: /bin/bash
+  become: true
 
 - name: Set default NodeJS version
-  ansible.builtin.shell: . /home/{{ user }}/.nvm/nvm.sh && nvm alias default {{ node_default_version }} && nvm use default
+  ansible.builtin.shell: source /home/{{ user }}/.nvm/nvm.sh && nvm alias default {{ node_default_version }} && nvm use default
   changed_when: false
   args:
     chdir: /home/{{ user }}/.nvm
-  become_user: "{{ user }}"
+    executable: /bin/bash
+  become: true
 
 - name: Check for default packages file
   ansible.builtin.stat:
@@ -60,3 +75,4 @@
         group: "{{ user }}"
         mode: 0755
       become_user: "{{ user }}"
+      become: true
