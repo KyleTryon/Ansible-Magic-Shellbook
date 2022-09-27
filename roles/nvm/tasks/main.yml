@@ -27,7 +27,9 @@
 
     - name: Set tag to latest
       changed_when: false
-      ansible.builtin.shell: git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+      ansible.builtin.shell:
+        git config --global --add safe.directory /home/{{ user }}/.nvm && \
+        git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
       args:
         chdir: /home/{{ user }}/.nvm
 
