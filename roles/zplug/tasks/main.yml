@@ -26,7 +26,7 @@
   when: not zplug_config_file_exists.stat.exists
 
 - name: Source zplug and install plugins
-  ansible.builtin.shell: source "$HOME/.zplug/init.zsh" && zplug install
+  ansible.builtin.shell: source "$HOME/.zplug/init.zsh" && zplug load && zplug install || true
   args:
     chdir: /home/{{ user }}
     executable: /usr/bin/zsh
