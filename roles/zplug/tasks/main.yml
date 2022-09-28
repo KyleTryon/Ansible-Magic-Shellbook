@@ -31,3 +31,4 @@
 - name: Debug zplug install
   ansible.builtin.debug:
     msg: "{{ zplug_install.stdout_lines }}"
+  when: zplug_install is changed

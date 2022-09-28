@@ -15,4 +15,3 @@
     name: "{{ user }}"
     shell: "{{ zsh_path.stdout }}"
   become: true
-  
