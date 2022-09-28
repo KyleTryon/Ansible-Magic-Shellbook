@@ -5,11 +5,12 @@
 - name: Check if NVM is installed
   ansible.builtin.shell: which nvm
   changed_when: false
+  ignore_errors: true
   register: nvm_installed
 
 - name: Debug NVM installation
   ansible.builtin.debug:
-    msg: "NVM Return Code: {{ nvm_installed.rc }} - which nvm: {{ nvm_installed.stdout }}"
+    msg: "NVM Return Code: {{ nvm_installed.rc }}"
 
 - name: Install NVM
   when: nvm_installed.rc == 1
