@@ -3,12 +3,11 @@
 #  manually added the NVM load script to your profile
 
 - name: Check if NVM is installed
-  ansible.builtin.stat:
-    path: /home/{{ user }}/.nvm
+  ansible.builtin.shell: command -v nvm &> /dev/null
   register: nvm_installed
 
 - name: Install NVM
-  when: not nvm_installed.stat.exists
+  when: nvm_installed.rc == 1
   block:
     - name: Download NVM
       ansible.builtin.git:
