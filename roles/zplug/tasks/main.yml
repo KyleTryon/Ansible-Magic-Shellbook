@@ -14,3 +14,20 @@
     mode: 0755
     recurse: true
   become: true
+
+- name: Check for zplug config file
+  ansible.builtin.stat:
+    path: "{{ zplug_config_file }}"
+  register: zplug_config_file_exists
+
+- name: Source zplug and install plugins
+  ansible.builtin.shell: source {{ dotfile_dir }}/.zplugrc && zplug install
+  args:
+    chdir: /home/{{ user }}
+    executable: /usr/bin/zsh
+  become: true
+  register: zplug_install
+
+- name: Debug zplug install
+  ansible.builtin.debug:
+    msg: "{{ zplug_install.stdout_lines }}"
