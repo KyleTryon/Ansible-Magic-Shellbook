@@ -26,13 +26,14 @@
   when: not zplug_config_file_exists.stat.exists
 
 - name: Source zplug and install plugins
-  ansible.builtin.shell: source {{ dotfile_dir }}/.zplugrc && zplug install
+  ansible.builtin.shell: source {{ dotfile_dir }}.zplugrc && zplug install
   args:
     chdir: /home/{{ user }}
     executable: /usr/bin/zsh
   become: true
-  changed_when: false
+  become_user: "{{ user }}"
   when: zplug_config_file_exists.stat.exists
+  changed_when: false
   register: zplug_install
 
 - name: Debug zplug install
