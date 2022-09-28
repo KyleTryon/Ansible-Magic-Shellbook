@@ -63,15 +63,12 @@
     path: "{{ nvm_default_packages_file }}"
   register: nvm_default_packages_file_exists
 
-- name: Install default packages
+- name: Copy default packages file
   when: nvm_default_packages_file_exists.stat.exists
-  block:
-    - name: Copy default packages file
-      ansible.builtin.file:
-        src: "{{ nvm_default_packages_file }}"
-        dest: /home/{{ user }}/.nvm/default-packages
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: 0755
-      become_user: "{{ user }}"
-      become: true
+  ansible.builtin.file:
+    src: "{{ nvm_default_packages_file }}"
+    dest: /home/{{ user }}/.nvm/default-packages
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  become: true
