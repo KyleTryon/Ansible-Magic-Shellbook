@@ -17,8 +17,13 @@
 
 - name: Check for zplug config file
   ansible.builtin.stat:
-    path: "{{ zplug_config_file }}"
+    path: "{{ dotfile_dir }}/.zplugrc"
   register: zplug_config_file_exists
+
+- name: Warn if zplug config file does not exist
+  ansible.builtin.debug:
+    msg: "zplug config file does not exist. Skipping zplug installation."
+  when: not zplug_config_file_exists.stat.exists
 
 - name: Source zplug and install plugins
   ansible.builtin.shell: source {{ dotfile_dir }}/.zplugrc && zplug install
@@ -27,6 +32,7 @@
     executable: /usr/bin/zsh
   become: true
   changed_when: false
+  when: zplug_config_file_exists.stat.exists
   register: zplug_install
 
 - name: Debug zplug install
