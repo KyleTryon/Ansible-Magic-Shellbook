@@ -4,6 +4,7 @@
 
 - name: Check if NVM is installed
   ansible.builtin.shell: command -v nvm &> /dev/null
+  changed_when: false
   register: nvm_installed
 
 - name: Install NVM
