@@ -4,6 +4,7 @@
   connection: local
   roles:
     - system_core
+    - nvm
     - dotfiles
     - zsh
     - oh_my_zsh
@@ -17,4 +18,3 @@
     - asciinema
     - btop
     - go
-    - nvm

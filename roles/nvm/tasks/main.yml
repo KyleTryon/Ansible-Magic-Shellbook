@@ -14,11 +14,7 @@
     - name: Download NVM
       ansible.builtin.git:
         repo: https://github.com/nvm-sh/nvm.git
-        dest: /tmp/nvm
-      become: true
-    
-    - name: Move NVM install to ~/.nvm
-      ansible.builtin.command: mv /tmp/nvm/* /home/{{ user }}/.nvm/
+        dest: /home/{{ user }}/.nvm/
       become: true
 
     - name: Ensure correct permissions
