@@ -8,17 +8,17 @@
   ignore_errors: true
   register: nvm_installed
 
-- name: Debug NVM installation
-  ansible.builtin.debug:
-    msg: "NVM Return Code: {{ nvm_installed.rc }}"
-
 - name: Install NVM
   when: nvm_installed.rc == 1
   block:
     - name: Download NVM
       ansible.builtin.git:
         repo: https://github.com/nvm-sh/nvm.git
-        dest: /home/{{ user }}/.nvm/
+        dest: /tmp/nvm
+      become: true
+    
+    - name: Move NVM install to ~/.nvm
+      ansible.builtin.command: mv /tmp/nvm/* /home/{{ user }}/.nvm/
       become: true
 
     - name: Ensure correct permissions
