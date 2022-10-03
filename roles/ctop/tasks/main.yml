@@ -1,0 +1,7 @@
+---
+
+- name: Download ctop
+  ansible.builtin.get_url:
+    url: https://github.com/bcicen/ctop/releases/download/v{{ ctop_version }}/ctop-{{ ctop_version }}-linux-amd64
+    dest: /usr/local/bin/ctop
+    mode: 0755
