@@ -10,7 +10,6 @@ My personal collection of Ansible playbooks and roles for setting up my personal
 - ZSH default shell
 - Oh My ZSH
 - Powerlevel10k
-- Zplug
 - Addtional plugins...
 
 ### Languages
