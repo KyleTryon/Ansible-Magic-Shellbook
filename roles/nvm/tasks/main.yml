@@ -3,12 +3,13 @@
 #  manually added the NVM load script to your profile
 
 - name: Check if NVM is installed
-  ansible.builtin.stat:
-    path: /home/{{ user }}/.nvm
+  ansible.builtin.shell: which nvm
+  changed_when: false
+  ignore_errors: true
   register: nvm_installed
 
 - name: Install NVM
-  when: not nvm_installed.stat.exists
+  when: nvm_installed.rc == 1
   block:
     - name: Download NVM
       ansible.builtin.git:
@@ -56,19 +57,4 @@
   args:
     chdir: /home/{{ user }}/.nvm
     executable: /bin/bash
-  become: true
-
-- name: Check for default packages file
-  ansible.builtin.stat:
-    path: "{{ nvm_default_packages_file }}"
-  register: nvm_default_packages_file_exists
-
-- name: Copy default packages file
-  when: nvm_default_packages_file_exists.stat.exists
-  ansible.builtin.file:
-    src: "{{ nvm_default_packages_file }}"
-    dest: /home/{{ user }}/.nvm/default-packages
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: 0755
   become: true

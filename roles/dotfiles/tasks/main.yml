@@ -17,19 +17,19 @@
 
 - name: Check if dotfiles install script exists
   ansible.builtin.stat:
-    path: "{{ dotfile_dir }}{{ dotfile_install }}"
+    path: "{{ dotfile_dir }}/{{ dotfile_install }}"
   register: dotfile_install_script
 
 - name: Ensure install.sh is executable
   when: dotfile_install_script.stat.exists
   ansible.builtin.file:
-    path: "{{ dotfile_dir }}{{ dotfile_install }}"
+    path: "{{ dotfile_dir }}/{{ dotfile_install }}"
     mode: 0755
     group: "{{ user }}"
     owner: "{{ user }}"
 
 - name: Install dotfiles
-  ansible.builtin.shell: "bash {{ dotfile_dir }}{{ dotfile_install }}"
+  ansible.builtin.shell: "bash {{ dotfile_dir }}/{{ dotfile_install }}"
   args:
     chdir: "{{ dotfile_dir }}"
   when: dotfile_install_script.stat.exists
