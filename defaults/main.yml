@@ -20,6 +20,3 @@ node_versions:
   - node
 node_default_version: node
 nvm_default_packages_file: /home/{{ user }}/.dotfiles/.default-packages
-
-#  Settings for zplug.
-zplug_dir: "/home/{{ user }}/.zplug"

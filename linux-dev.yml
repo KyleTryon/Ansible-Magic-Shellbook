@@ -8,7 +8,6 @@
     - dotfiles
     - zsh
     - oh_my_zsh
-    - zplug
     - git
     - gh
     - yq

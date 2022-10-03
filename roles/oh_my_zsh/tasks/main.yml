@@ -1,5 +1,5 @@
 ---
-# Load in your .zshrc file via dotfiles
+# Install Oh-My-Zsh
 
 - name: Install Oh-my-zsh
   ansible.builtin.git:
@@ -15,3 +15,32 @@
     mode: 0755
     recurse: true
   become: true
+
+# Install Theme
+
+- name: Install Powerlevel10k theme
+  ansible.builtin.git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: /home/{{ user }}/.oh-my-zsh/custom/themes/powerlevel10k
+
+# Install Plugins
+
+- name: Install ZSH Autosuggestions
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Install ZSH Syntax Highlighting
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: /home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+- name: Install forgit
+  ansible.builtin.git:
+    repo: https://github.com/wfxr/forgit.git
+    dest: /home/{{ user }}/.oh-my-zsh/custom/plugins/forgit
+
+- name: Install ZSH History Substring Search
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search.git
+    dest: /home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-history-substring-search
