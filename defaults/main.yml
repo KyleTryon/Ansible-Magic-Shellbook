@@ -20,3 +20,5 @@ node_versions:
   - node
 node_default_version: node
 nvm_default_packages_file: /home/{{ user }}/.dotfiles/.default-packages
+
+ctop_version: 0.7.7
