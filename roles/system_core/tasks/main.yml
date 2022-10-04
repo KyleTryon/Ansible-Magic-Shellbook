@@ -82,6 +82,11 @@
     regexp: "^github\\.com"
     mode: 0600
 
-- name: Echo complete
-  ansible.builtin.debug:
-    msg: "User {{ user }} created with SSH key pair and default directories."
+- name: Add user to sudoers
+  community.general.sudoers:
+    name: "{{ user }}"
+    nopassword: true
+    state: present
+    user: "{{ user }}"
+    commands: ALL
+  become: true
