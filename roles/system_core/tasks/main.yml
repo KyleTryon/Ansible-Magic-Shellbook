@@ -15,6 +15,7 @@
     - ca-certificates
     - cmake
     - curl
+    - exa
     - fzf
     - git
     - gnupg
