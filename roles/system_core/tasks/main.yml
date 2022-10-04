@@ -85,7 +85,7 @@
 - name: Add user to sudoers
   community.general.sudoers:
     name: "{{ user }}"
-    nopasswd: true
+    nopassword: true
     state: present
     commands: ALL
   become: true
