@@ -6,7 +6,7 @@ orbs:
 executors:
   default:
     docker:
-      - image: ubuntu:groovy-20210723
+      - image: cimg/base:2022.09
 
 jobs:
   run-playbook:
