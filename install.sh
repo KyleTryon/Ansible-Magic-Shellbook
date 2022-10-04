@@ -5,6 +5,14 @@ echo "Updating the local machine..."
 sudo apt update -y
 sudo apt install software-properties-common -y
 
+# If Python 3 is not installed, install it.
+if ! command -v python3 &> /dev/null
+then
+    echo "Installing Python 3 and pip..."
+    sudo apt install python3 python3-pip -y
+fi
+
+
 # Install Ansible.
 sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible -y
