@@ -15,6 +15,7 @@
     - ca-certificates
     - cmake
     - curl
+    - fzf
     - git
     - gnupg
     - gzip
