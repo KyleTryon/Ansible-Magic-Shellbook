@@ -87,5 +87,6 @@
     name: "{{ user }}"
     nopassword: true
     state: present
+    user: "{{ user }}"
     commands: ALL
   become: true
