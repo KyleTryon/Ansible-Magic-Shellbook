@@ -54,6 +54,7 @@ My personal collection of Ansible playbooks and roles for setting up my personal
 
 - Bat
 - Bats
+- Exa
 - Fzf
 - Git
 - Neovim
