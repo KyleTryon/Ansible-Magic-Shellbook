@@ -65,3 +65,5 @@ My personal collection of Ansible playbooks and roles for setting up my personal
 ### Dotfiles
 
 This repo _requires_ provided dotfiles to be present. See the accompanying [dotfiles repo](https://github.com/KyleTryon/.dotfiles).
+
+To modify, fork the dotfiles repo and update the `/defaults/main.yml` file to change the value of `dotfile_repo`.
