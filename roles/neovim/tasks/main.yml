@@ -26,7 +26,7 @@
         mode: 0755
 
     - name: Run LunarVim
-      ansible.builtin.shell: /tmp/lvim-install.sh --install-dependencies --overwrite 
+      ansible.builtin.shell: /tmp/lvim-install.sh --install-dependencies --overwrite --yes
       changed_when: false
       become: true
       become_user: "{{ user }}"
