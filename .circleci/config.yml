@@ -6,7 +6,7 @@ orbs:
 executors:
   default:
     docker:
-      - image: cimg/base:2022.09
+      - image: ubuntu:22.10
     resource_class: large
 
 jobs:
