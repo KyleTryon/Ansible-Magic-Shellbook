@@ -7,6 +7,7 @@ executors:
   default:
     docker:
       - image: cimg/base:2022.09
+    resource_class: large
 
 jobs:
   run-playbook:
