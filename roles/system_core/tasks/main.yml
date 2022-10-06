@@ -13,6 +13,7 @@
     - apt-transport-https
     - build-essential
     - ca-certificates
+    - cargo
     - cmake
     - curl
     - exa
