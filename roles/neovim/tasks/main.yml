@@ -24,9 +24,10 @@
         url: https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
         dest: /tmp/lvim-install.sh
         mode: 0755
-    
+
     - name: Run LunarVim
       ansible.builtin.shell: /tmp/lvim-install.sh
+      changed_when: false
       become: true
       become_user: "{{ user }}"
 
