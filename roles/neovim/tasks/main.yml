@@ -23,11 +23,11 @@
       ansible.builtin.git:
         repo: https://github.com/LunarVim/LunarVim.git
         dest: /tmp/lvim
-    
+
     - name: Install LunarVim
       ansible.builtin.shell: /tmp/lvim/utils/installer/install.sh -y
+      changed_when: false
       become: true
-
 
     - name: Does user dotfiles contain Lvim Config?
       ansible.builtin.stat:
