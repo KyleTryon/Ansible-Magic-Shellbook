@@ -50,6 +50,7 @@
     - wget
     - zip
     - yamllint
+    - sudo
 
 - name: Install tzdata
   become: true
