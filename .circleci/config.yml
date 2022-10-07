@@ -6,7 +6,7 @@ orbs:
 executors:
   default:
     docker:
-      - image: ubuntu:22.10
+      - image: ubuntu:22.04
     resource_class: large
 
 jobs:
