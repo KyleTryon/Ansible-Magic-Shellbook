@@ -45,12 +45,19 @@
     - software-properties-common
     - tar
     - tmux
-    - tzdata
     - unzip
     - vim
     - wget
     - zip
     - yamllint
+
+- name: Install tzdata
+  become: true
+  ansible.builtin.apt:
+    name: tzdata
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
 
 - name: Configure default user
   ansible.builtin.user:
