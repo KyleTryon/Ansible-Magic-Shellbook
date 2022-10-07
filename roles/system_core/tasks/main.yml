@@ -98,6 +98,12 @@
     regexp: "^github\\.com"
     mode: 0600
 
+- name: Ensure Sudoers directory exits
+  ansible.builtin.file:
+    path: /etc/sudoers.d
+    state: directory
+    mode: 0755
+
 - name: Add user to sudoers
   community.general.sudoers:
     name: "{{ user }}"
