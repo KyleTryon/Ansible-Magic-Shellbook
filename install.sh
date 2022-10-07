@@ -37,9 +37,6 @@ then
     apt install python3 python3-pip python3-venv -y
 fi
 
-pip3 install ensurepip
-
-
 # Install Ansible.
 apt-add-repository --yes --update ppa:ansible/ansible
 apt install ansible -y
