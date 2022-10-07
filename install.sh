@@ -34,8 +34,10 @@ apt install software-properties-common -y
 if ! command -v python3 &> /dev/null
 then
     echo "Installing Python 3 and pip..."
-    apt install python3 python3-pip -y
+    apt install python3 python3-pip python3-venv -y
 fi
+
+pip3 install ensurepip
 
 
 # Install Ansible.
