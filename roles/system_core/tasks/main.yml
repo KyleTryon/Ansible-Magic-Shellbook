@@ -1,4 +1,5 @@
 ---
+
 - name: Update and upgrade packages
   ansible.builtin.apt:
     update_cache: true
@@ -9,6 +10,8 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
   with_items:
     - apt-transport-https
     - build-essential
@@ -35,15 +38,24 @@
     - software-properties-common
     - tar
     - tmux
-    - tzdata
     - unzip
     - vim
     - wget
     - zip
     - yamllint
+    - sudo
 
-- name: Update timezone
-  timezone:
+- name: Install tzdata
+  become: true
+  ansible.builtin.apt:
+    name: tzdata
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+
+- name: Set timezone
+  become: true
+  ansible.builtin.timezone:
     name: "{{ timezone }}"
 
 - name: Configure default user
@@ -84,6 +96,12 @@
     line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
     regexp: "^github\\.com"
     mode: 0600
+
+- name: Ensure Sudoers directory exits
+  ansible.builtin.file:
+    path: /etc/sudoers.d
+    state: directory
+    mode: 0755
 
 - name: Add user to sudoers
   community.general.sudoers:

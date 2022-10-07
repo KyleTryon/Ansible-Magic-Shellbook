@@ -6,7 +6,8 @@ orbs:
 executors:
   default:
     docker:
-      - image: cimg/base:2022.09
+      - image: ubuntu:22.04
+    resource_class: large
 
 jobs:
   run-playbook:
@@ -16,8 +17,8 @@ jobs:
       - run:
           name: Install pip
           command: |
-            sudo apt-get update
-            sudo apt-get install -y python3-pip
+            apt-get update
+            apt-get install -y python3-pip openssh-client
       - run:
           name: Install ansible-lint
           command: pip install ansible-lint
@@ -26,11 +27,11 @@ jobs:
           command: ansible-lint ./linux-dev.yml
       - run:
           name: Import default vaulues
-          command: echo $DEFAULT_VALS | base64 --decode > ./defaults/.main.json
+          command: printf $DEFAULT_VALS | base64 --decode > ./defaults/.main.json
       - run:
           name: Run Ansible
           command: |
-            chmod +x install.sh && sudo ./install.sh
+            chmod +x install.sh && ./install.sh
 workflows:
   ansible:
     jobs:
