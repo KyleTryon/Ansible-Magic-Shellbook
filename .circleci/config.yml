@@ -18,7 +18,7 @@ jobs:
           name: Install pip
           command: |
             apt-get update
-            apt-get install -y python3-pip
+            apt-get install -y python3-pip openssh-client
       - run:
           name: Install ansible-lint
           command: pip install ansible-lint
