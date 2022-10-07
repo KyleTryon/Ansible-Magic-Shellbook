@@ -1,6 +1,7 @@
 ---
 # System defaults
 user: root
+timezone: America/New_York
 
 #  Settings for git configuration.
 git_user_email: johndoe@example.com

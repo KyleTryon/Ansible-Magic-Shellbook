@@ -1,4 +1,12 @@
 ---
+
+- name: Setup timezone
+  ansible.builtin.file:
+    path: /usr/share/zoneinfo/{{ timezone }}
+    dest: /etc/localtime
+    force: true
+    state: link
+
 - name: Update and upgrade packages
   ansible.builtin.apt:
     update_cache: true
@@ -9,6 +17,8 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
   with_items:
     - apt-transport-https
     - build-essential
@@ -41,10 +51,6 @@
     - wget
     - zip
     - yamllint
-
-- name: Update timezone
-  ansible.builtin.timezone:
-    name: "{{ timezone }}"
 
 - name: Configure default user
   ansible.builtin.user:
