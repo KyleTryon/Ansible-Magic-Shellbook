@@ -5,7 +5,7 @@
 My personal collection of Ansible playbooks and roles for setting up my personal development machines.
 
 <details>
-  <summary>ASCII Art (desktop only)</summary>
+  <summary>ASCII Art</summary>
 
 ```text
                                             @
@@ -37,30 +37,15 @@ My personal collection of Ansible playbooks and roles for setting up my personal
 
 ## Overview
 
-### Shell
-
-- ZSH default shell
-- Oh My ZSH
-- Powerlevel10k
-- Addtional plugins...
-
-### Languages
-
-- Python
-- NodeJS
-- Go
-
-### Core utilities
-
-- Bat
-- Bats
-- Exa
-- Fzf
-- Git
-- Neovim
-- Shellcheck
-- Tmux
-- Many more...
+| Shell                 | Languages    | Core Utilities | More       |
+| --------------------- | ------------ | -------------- | ---------- |
+| ZSH (default)         | Python       | Bat            | Bats       |
+| Oh-My-ZSH             | NodeJS (nvm) | Exa            | ShellCheck |
+| Powerlevel10K         | Go           | Fzf            | JQ         |
+| Additional Plugins... |              | Lunarvim       | YQ         |
+|                       |              | Tmux           | Dasel      |
+|                       |              | Btop           |            |
+|                       |              | More...        |
 
 ### Dotfiles
 
