@@ -25,7 +25,7 @@
     dest: /{{ user }}/.ssh/known_hosts
     create: true
     state: present
-    line: "{{ lookup('pipe', 'ssh-keyscan -H github.com') }}"
+    line: "{{ lookup('pipe', 'ssh-keyscan -H github.com 2> /dev/null') }}"
     regexp: "^github\\.com"
     owner: "{{ user }}"
     mode: 0600
