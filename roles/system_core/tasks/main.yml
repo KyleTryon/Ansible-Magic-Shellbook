@@ -18,6 +18,7 @@
     - ca-certificates
     - cargo
     - cmake
+    - cmatrix
     - curl
     - exa
     - fzf
@@ -28,6 +29,7 @@
     - jq
     - libcurl4-openssl-dev
     - make
+    - molly-guard
     - ncdu
     - neofetch
     - net-tools
@@ -36,14 +38,14 @@
     - rsync
     - shellcheck
     - software-properties-common
+    - sudo
     - tar
     - tmux
     - unzip
     - vim
     - wget
-    - zip
     - yamllint
-    - sudo
+    - zip
 
 - name: Install tzdata
   become: true
