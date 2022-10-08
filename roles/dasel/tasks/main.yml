@@ -1,0 +1,11 @@
+---
+# tasks file for dasel
+- name: Install Dasel via go
+  ansible.builtin.command: go install github.com/TomWright/dasel/cmd/dasel@latest
+  become: true
+  become_user: "{{ user }}"
+  changed_when: false
+  environment:
+    GO111MODULE: on
+    GOPATH: /home/{{ user }}/go
+    PATH: /home/{{ user }}/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
