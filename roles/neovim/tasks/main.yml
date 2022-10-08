@@ -19,20 +19,25 @@
   when: not lvim_installed.stat.exists
   block:
 
-    - name: Clone LunarVim
-      ansible.builtin.git:
-        repo: https://github.com/LunarVim/LunarVim.git
-        dest: /home/{{ user }}/.local/share/lunarvim
+    - name: Download LunarVim Installer
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/KyleTryon/lunarvim/rolling/utils/installer/install.sh
+        dest: /tmp/lvim-install.sh
+        mode: 0755
         force: true
-      become: true
-      become_user: "{{ user }}"
 
     - name: Install LunarVim
       ansible.builtin.shell:
-        cmd: ./install.sh -y
-        chdir: /home/{{ user }}/.local/share/lunarvim/utils/installer/
-      changed_when: false
+        cmd: /tmp/lvim-install.sh
+        executable: /usr/bin/bash
       become: true
+      become_user: "{{ user }}"
+      changed_when: false
+      environment:
+        INTERACTIVE_MODE: "0"
+        LVBRANCH: "rolling"
+        LUNARVIM_RUNTIME_DIR: "/home/{{ user }}/.local/share/lunarvim"
+        ARGS_INSTALL_DEPENDENCIES: "1"
 
     - name: Does user dotfiles contain Lvim Config?
       ansible.builtin.stat:
