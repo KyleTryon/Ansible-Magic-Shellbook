@@ -42,7 +42,7 @@ My personal collection of Ansible playbooks and roles for setting up my personal
 | ZSH (default)         | Python       | Bat            | Bats       |
 | Oh-My-ZSH             | NodeJS (nvm) | Exa            | ShellCheck |
 | Powerlevel10K         | Go           | Fzf            | JQ         |
-| Additional Plugins... |              | Lunarvim       | YQ         |
+| Additional Plugins... |              | Astronvim      | YQ         |
 |                       |              | Tmux           | Dasel      |
 |                       |              | Btop           |            |
 |                       |              | More...        |
