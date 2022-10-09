@@ -28,6 +28,7 @@
     - iotop
     - jq
     - libcurl4-openssl-dev
+    - libssl-dev
     - make
     - molly-guard
     - ncdu
