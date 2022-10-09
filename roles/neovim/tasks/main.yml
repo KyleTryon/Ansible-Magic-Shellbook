@@ -9,47 +9,17 @@
     deb: https://github.com/neovim/neovim/releases/download/v{{ nvim_latest_tag.stdout }}/nvim-linux64.deb
   become: true
 
-- name: Is LunarVim installed?
-  ansible.builtin.stat:
-    path: ~/.local/share/lunarvim/lvim
-  register: lvim_installed
-  ignore_errors: true
+- name: Clone AstroNvim
+  ansible.builtin.git:
+    repo: https://github.com/AstroNvim/AstroNvim.git
+    dest: /home/{{ user }}/.config/nvim
+    force: true
+    update: true
+  become: true
+  become_user: "{{ user }}"
 
-- name: Install Lunarvim
-  when: not lvim_installed.stat.exists
-  block:
-
-    - name: Download LunarVim Installer
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/KyleTryon/lunarvim/rolling/utils/installer/install.sh
-        dest: /tmp/lvim-install.sh
-        mode: 0755
-        force: true
-
-    - name: Install LunarVim
-      ansible.builtin.shell:
-        cmd: /tmp/lvim-install.sh
-        executable: /usr/bin/bash
-      become: true
-      become_user: "{{ user }}"
-      changed_when: false
-      environment:
-        INTERACTIVE_MODE: "0"
-        LVBRANCH: "rolling"
-        LUNARVIM_RUNTIME_DIR: "/home/{{ user }}/.local/share/lunarvim"
-        ARGS_INSTALL_DEPENDENCIES: "1"
-
-    - name: Does user dotfiles contain Lvim Config?
-      ansible.builtin.stat:
-        path: "{{ dotfile_dir }}/{{ lvim_config_file_name }}"
-      register: lvim_config_exists
-      ignore_errors: true
-
-    - name: Sym link Lvim Config
-      ansible.builtin.file:
-        src: "{{ dotfile_dir }}/{{ lvim_config_file_name }}"
-        dest: ~/.config/lvim/config.lua
-        state: link
-        force: true
-        mode: 0644
-      when: lvim_config_exists.stat.exists
+- name: Nvim Packer Sync
+  ansible.builtin.shell: nvim --headless +PackerSync +qall
+  become: true
+  become_user: "{{ user }}"
+  changed_when: false
