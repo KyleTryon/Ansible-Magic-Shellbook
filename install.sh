@@ -1,6 +1,17 @@
 #!/bin/bash
 export DEBIAN_FRONTEND=noninteractive
 
+function parse_arguments() {
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      --personal)
+        ARGS_PERSONAL=1
+        ;;
+    esac
+    shift
+  done
+}
+
 function print_ascii_art() {
     echo '
                                             @
@@ -27,6 +38,7 @@ function print_ascii_art() {
                                 /@@@.
 '
 }
+
 function prep_macchine() {
 
     # Install and configure the default playbook on the local machine.
@@ -63,6 +75,18 @@ function prep_playbook() {
         echo "You may also provide a .main.yml file in the defaults directory."
         exit 1
     fi
+
+    if [ ! "$ARGS_PERSONAL" = "1" ]; then
+        if grep -q "KyleTryon/.dotfiles" defaults/main.yml; then
+            echo "ERROR: You must FORK and modify your own personal dotfiles repo."
+            echo
+            echo "  Step 1: Fork this repo to your own account:"
+            echo "    https://github.com/KyleTryon/.dotfiles"
+            echo
+            echo "  Step 2: Update the 'dotfile_repo' value in defaults/main.yml file with your own repo."
+            exit 1
+        fi
+    fi
 }
 
 function run_playbook() {
@@ -75,6 +99,7 @@ function run_playbook() {
 
 function main() {
     print_ascii_art
+    parse_arguments
     prep_macchine
     prep_playbook
     run_playbook

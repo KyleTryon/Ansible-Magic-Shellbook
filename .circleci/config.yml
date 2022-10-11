@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Run Ansible
           command: |
-            chmod +x install.sh && ./install.sh
+            chmod +x install.sh && ./install.sh --personal
 workflows:
   ansible:
     jobs:
