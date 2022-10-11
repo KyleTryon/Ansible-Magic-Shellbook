@@ -1,16 +1,15 @@
 #!/bin/bash
 export DEBIAN_FRONTEND=noninteractive
 
-function parse_arguments() {
-  while [ "$#" -gt 0 ]; do
-    case "$1" in
-      --personal)
-        ARGS_PERSONAL=1
-        ;;
-    esac
-    shift
-  done
-}
+while [ "$#" -gt 0 ]; do
+case "$1" in
+    --personal)
+    ARGS_PERSONAL=1
+    ;;
+esac
+shift
+done
+
 
 function print_ascii_art() {
     echo '
@@ -39,7 +38,7 @@ function print_ascii_art() {
 '
 }
 
-function prep_macchine() {
+function prep_machine() {
 
     # Install and configure the default playbook on the local machine.
     echo "Updating the local machine..."
@@ -100,7 +99,7 @@ function run_playbook() {
 function main() {
     print_ascii_art
     parse_arguments
-    prep_macchine
+    prep_machine
     prep_playbook
     run_playbook
 }
