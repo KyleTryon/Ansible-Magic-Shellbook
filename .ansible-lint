@@ -1,0 +1,6 @@
+skip_list:  # or 'skip_list' to silence them completely
+  - command-instead-of-module  # Using command rather than module
+  - command-instead-of-shell  # Use shell only when shell functionality is required
+  - git-latest  # Git checkouts must contain explicit version
+  - risky-shell-pipe  # Shells that use pipes should set the pipefail option
+  
